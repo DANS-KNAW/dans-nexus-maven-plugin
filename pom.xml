@@ -22,6 +22,25 @@
         <maven.version>3.5.0</maven.version>
     </properties>
 
+    <scm>
+        <developerConnection>scm:git:ssh://github.com/DANS-KNAW/${project.artifactId}</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <!-- Credentials for server are defined in ~/.m2/settings.xml -->
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <!-- Final slash is important for Nexus ! -->
+            <url>http://nexus.dans.knaw.nl/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <!-- Final slash is important for Nexus ! -->
+            <url>http://nexus.dans.knaw.nl/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.maven</groupId>
