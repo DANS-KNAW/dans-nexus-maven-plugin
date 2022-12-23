@@ -1,7 +1,6 @@
 package nl.knaw.dans.maven.nexus;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -13,12 +12,8 @@ import org.apache.maven.project.MavenProject;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URI;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -40,11 +35,11 @@ public class DeployRpmMojo extends AbstractMojo {
     @Parameter(property = "nexusPassword", required = true)
     private String nexusPassword;
 
-    @Parameter(property = "snapshotRepositoryUrl")
-    private String snapshotRepositoryUrl;
+    @Parameter(property = "snapshotRpmRepositoryUrl")
+    private String snapshotRpmRepositoryUrl;
 
-    @Parameter(property = "repositoryUrl", required = true)
-    private String repositoryUrl;
+    @Parameter(property = "rpmRepositoryUrl", required = true)
+    private String rpmRepositoryUrl;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
@@ -70,7 +65,7 @@ public class DeployRpmMojo extends AbstractMojo {
     }
 
     private URL getRpmRepoUrl(String rpmBaseName) throws MojoFailureException {
-        String uploadUrl = appendSlash(getRepositoryUrl()) + rpmBaseName;
+        String uploadUrl = appendSlash(getRpmRepositoryUrl()) + rpmBaseName;
         try {
             return new URL(uploadUrl);
         }
@@ -79,12 +74,12 @@ public class DeployRpmMojo extends AbstractMojo {
         }
     }
 
-    private String getRepositoryUrl() {
+    private String getRpmRepositoryUrl() {
         boolean isSnapshot = project.getVersion().contains("SNAPSHOT");
-        if (isSnapshot && snapshotRepositoryUrl != null) {
-            return snapshotRepositoryUrl;
+        if (isSnapshot && snapshotRpmRepositoryUrl != null) {
+            return snapshotRpmRepositoryUrl;
         }
-        return repositoryUrl;
+        return rpmRepositoryUrl;
     }
 
     private String appendSlash(String s) {
