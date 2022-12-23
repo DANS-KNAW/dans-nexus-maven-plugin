@@ -26,18 +26,33 @@ public class DeployRpmMojo extends AbstractMojo {
     @Parameter(defaultValue = "${project}", readonly = true, required = true)
     private MavenProject project;
 
+    /**
+     * The number of RPMs that is expected to be built under target/rpm. Defaults to 1.
+     */
     @Parameter(property = "expectedNumberOfRpms", defaultValue = "1", required = true)
     private int expectedNumberOfRpms;
 
+    /**
+     * Nexus username of the account with which to deploy the RPM.
+     */
     @Parameter(property = "nexusUserName", required = true)
     private String nexusUserName;
 
+    /**
+     * Nexus password of the account with which to deploy the RPM.
+     */
     @Parameter(property = "nexusPassword", required = true)
     private String nexusPassword;
 
+    /**
+     * URL of the YUM repository for snapshot releases
+     */
     @Parameter(property = "snapshotRpmRepositoryUrl")
     private String snapshotRpmRepositoryUrl;
 
+    /**
+     * URL of the YUM repository for final releases
+     */
     @Parameter(property = "rpmRepositoryUrl", required = true)
     private String rpmRepositoryUrl;
 
@@ -66,11 +81,12 @@ public class DeployRpmMojo extends AbstractMojo {
 
     private URL getRpmRepoUrl(String rpmBaseName) throws MojoFailureException {
         String uploadUrl = appendSlash(getRpmRepositoryUrl()) + rpmBaseName;
+        getLog().info(String.format("%s -> %s", rpmBaseName, uploadUrl));
         try {
             return new URL(uploadUrl);
         }
         catch (MalformedURLException e) {
-            throw new MojoFailureException(String.format("Artifactor repositry URL malformed: %s", uploadUrl), e);
+            throw new MojoFailureException(String.format("Artifactor repository URL malformed: %s", uploadUrl), e);
         }
     }
 
