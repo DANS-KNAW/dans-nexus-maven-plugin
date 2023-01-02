@@ -20,7 +20,7 @@
 
     <groupId>nl.knaw.dans</groupId>
     <artifactId>dans-nexus-maven-plugin</artifactId>
-    <version>0.2.1-SNAPSHOT</version>
+    <version>0.3.0</version>
     <packaging>maven-plugin</packaging>
 
     <name>DANS Nexus Maven Plugin</name>
@@ -44,7 +44,7 @@
 
     <scm>
         <developerConnection>scm:git:ssh://github.com/DANS-KNAW/${project.artifactId}</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v0.3.0</tag>
     </scm>
 
     <distributionManagement>
