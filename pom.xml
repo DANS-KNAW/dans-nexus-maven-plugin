@@ -33,7 +33,7 @@
     <name>DANS Nexus Maven Plugin</name>
     <description>Maven plugin to deploy RPMs to a Nexus Repository</description>
 
-    <url>https://github.com/DANS-KNAW/dans-nexus-maven-plugin</url>
+    <url>https://dans-knaw.github.io/dans-nexus-maven-plugin</url>
 
     <scm>
         <developerConnection>scm:git:ssh://github.com/DANS-KNAW/${project.artifactId}</developerConnection>
