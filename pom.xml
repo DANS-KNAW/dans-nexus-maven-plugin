@@ -36,8 +36,8 @@
     <url>https://dans-knaw.github.io/dans-nexus-maven-plugin</url>
 
     <scm>
-        <connection>scm:git:https://github.com/DANS-KNAW/${project.artifactId}</connection>
-        <developerConnection>scm:git:ssh://github.com/DANS-KNAW/${project.artifactId}</developerConnection>
+        <connection>scm:git:https://github.com/DANS-KNAW/dans-nexus-maven-plugin</connection>
+        <developerConnection>scm:git:ssh://github.com/DANS-KNAW/dans-nexus-maven-plugin</developerConnection>
         <tag>HEAD</tag>
         <url>https://github.com/DANS-KNAW/${project.artifactId}</url>
     </scm>
